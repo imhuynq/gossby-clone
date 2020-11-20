@@ -1,0 +1,57 @@
+@import "./variables.scss";
+
+/*banner*/
+.banner_container {visibility: hidden;font-size: 0;opacity: 0;
+  &.swiper-container-initialized {visibility: visible;opacity: 1}
+  &.swiper-container {width: 100%;height: 100%;padding: 0 0 50px}
+  .swiper-pagination {bottom: 20px;
+    .swiper-pagination-bullet {background: white;border: solid 1px $color-link-secondary;
+      &:hover {border-color: $color-theme-primary}
+      &-active {background: $color-theme-primary;border-color: $color-theme-primary}
+    }
+  }
+  .swiper-button-arrow {background: none !important;width: 50px;height: 50px;border: solid 2px white;justify-content: center;align-items: center;margin-top: -50px;display: none;
+    opacity: 0;visibility: hidden;
+    @include box-shadow(0, 0, 4px, rgba(0,0,0,.25));
+    @include transition(all .3s ease);
+    &.swiper-button-prev {left: 0; &:after{font-size:18px;color:white}}
+    &.swiper-button-next {right: 0;&:after{font-size:18px;color:white}}
+    svg {color: white;width: 18px;}
+    &.swiper-button-prev svg {@include rotate(90);}
+    &.swiper-button-next svg {@include rotate(-90);}
+    &.swiper-button-disabled {display: none}
+    @media (min-width: $bp-l) {
+      display: flex;
+    }
+  }
+  &:hover {
+    .swiper-button-arrow {opacity: 1;visibility: visible;
+      &.swiper-button-next {right: 10px}
+      &.swiper-button-prev {left: 10px}
+    }
+  }
+}
+.banner_item {position: relative;}
+.banner_item_thumb {position: relative;font-size: 0;display: block;
+  &::before {content: '';display: block;
+    @include responsive-ratio(532,532);
+  }
+
+  img {position: absolute;width: 100%;height: 100%;object-fit: cover;top: 0;left: 0}
+
+}
+.banner_item_des {text-align: center;color: white;position: absolute;left: 50%;bottom: 10%;z-index: 1;
+  @include translate(-50%,0);
+}
+.banner_item_group_text {margin: 0 0 35px;
+  .banner_item_text {display: block;
+    @include text-shadow(0 ,4px, 4px, rgba(0,0,0,.25));
+    //&__top {text-transform: uppercase;font-size: $font-size-s}
+    &__mid {font-weight: $font-bold;font-size: $font-size-3b - 2;
+        @media (min-width: $bp-md) {
+          font-size: $font-size-3b;
+        }
+    }
+    &__bot {font-weight: $font-regular;font-size: $font-size-xs;letter-spacing: 3px;font-weight: normal}
+  }
+}
