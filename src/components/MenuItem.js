@@ -1,6 +1,6 @@
 import React from 'react'
 import { ArrowLeft, ArrowRight }  from '../icons';
-
+import {Link} from 'react-router-dom';
 // arrButton.click(function () {
 // 	$(this).next().addClass('open');
 // 	if ($(window).width() < 992) {
@@ -21,10 +21,11 @@ const backMenu = e => {
 }
 
 const MenuItem = ({item}) => {
+    const link = item.title === 'Home' ? '/' : `/product/${item.title}`;
     return <li className={`menu_mobile_item ${item.children ? 'has_child' : '' }`}>
-        <a href="<?= $params['url'] ?>" class="menu_mobile_url" title="<?= $params['title'] ?>">
+        <Link to={link} class="menu_mobile_url" title="<?= $params['title'] ?>">
             {item.title}
-        </a>
+        </Link>
         <span class="menu_mobile_arr" onClick={nextMenu}><ArrowRight/></span>
         {item.children && <div class="menu_mobile_sub">
                 <div class="menu_mobile_header">
@@ -42,9 +43,9 @@ const MenuItem = ({item}) => {
                     <div class='menu_desktop_only'>
                         {item.children?.map(child => <li class="menu_mobile_item second-menu">
                             <div class='d-flex align-items-center'>
-                                <a href="" class="menu_mobile_url" title="<?= $child['title'] ?>">
+                                <Link to={child.title} class="menu_mobile_url" title="<?= $child['title'] ?>">
                                     {child.title}
-                                </a>
+                                </Link>
                             </div>
                             {/* <?= $this->renderSubmenu($child, 0); ?> */}
                         </li>)}

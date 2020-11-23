@@ -12,10 +12,13 @@ import './menu.scss';
 import './header.scss';
 import './common.scss';
 import './banner.scss';
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
